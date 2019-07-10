@@ -24,5 +24,6 @@ class BemComponentTest extends TestCase
     $c = new TestBemComponent();
     $this->assertEquals('p-block--light', $c->getModifier('light'));
     $this->assertEquals('p-block__input--light', $c->getModifier('light', 'input'));
+    $this->assertEquals('p-block__input__inner--light', $c->getModifier('light', 'input', 'inner'));
   }
 }

@@ -7,17 +7,18 @@ trait BemComponentTrait
   abstract public function getBlockName(): string;
 
   /**
-   * @param string      $modifier
-   * @param string|null $element
+   * @param string $modifier
+   * @param string ...$elements
    *
    * @return string
    */
-  public function getModifier(string $modifier, string $element = null): string
+  public function getModifier(string $modifier, string... $elements): string
   {
-    if($element !== null)
+    if($elements)
     {
-      return $this->getElementName($element) . '--' . $modifier;
+      return $this->getElementName(...$elements) . '--' . $modifier;
     }
+
     return $this->getBlockName() . '--' . $modifier;
   }
 
