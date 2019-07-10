@@ -3,8 +3,15 @@ namespace PackagedUi\BemComponent;
 
 trait BemComponentTrait
 {
+  /** @return string */
   abstract public function getBlockName(): string;
 
+  /**
+   * @param string      $modifier
+   * @param string|null $element
+   *
+   * @return string
+   */
   public function getModifier(string $modifier, string $element = null): string
   {
     if($element !== null)
@@ -14,8 +21,20 @@ trait BemComponentTrait
     return $this->getBlockName() . '--' . $modifier;
   }
 
-  public function getElementName(string $element): string
+  /**
+   * @param string ...$elements
+   *
+   * @return string
+   */
+  public function getElementName(string... $elements): string
   {
-    return $this->getBlockName() . '__' . $element;
+    $class = $this->getBlockName();
+
+    foreach($elements as $element)
+    {
+      $class .= '__' . $element;
+    }
+
+    return $class;
   }
 }

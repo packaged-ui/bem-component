@@ -16,6 +16,7 @@ class BemComponentTest extends TestCase
   {
     $c = new TestBemComponent();
     $this->assertEquals('p-block__input', $c->getElementName('input'));
+    $this->assertEquals('p-block__input__inner', $c->getElementName('input', 'inner'));
   }
 
   public function testModifier()
