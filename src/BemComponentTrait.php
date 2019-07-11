@@ -3,19 +3,50 @@ namespace PackagedUi\BemComponent;
 
 trait BemComponentTrait
 {
+  /**
+   * This is the root BEM class that all the other elements
+   * and modifiers will use as a base
+   *
+   * @return string
+   */
   abstract public function getBlockName(): string;
 
-  public function getModifier(string $modifier, string $element = null): string
+  /**
+   * Modifiers are used to dentote a modififaction of the component
+   * or specific elements inside.
+   *
+   * @param string $modifier
+   * @param string ...$elements
+   *
+   * @return string
+   */
+  public function getModifier(string $modifier, string ...$elements): string
   {
-    if($element !== null)
+    if($elements)
     {
-      return $this->getElementName($element) . '--' . $modifier;
+      return $this->getElementName(...$elements) . '--' . $modifier;
     }
+
     return $this->getBlockName() . '--' . $modifier;
   }
 
-  public function getElementName(string $element): string
+  /**
+   * Element classes are used to style specfic sections within
+   * a component while still being scoped
+   *
+   * @param string ...$elements
+   *
+   * @return string
+   */
+  public function getElementName(string ...$elements): string
   {
-    return $this->getBlockName() . '__' . $element;
+    $class = $this->getBlockName();
+
+    foreach($elements as $element)
+    {
+      $class .= '__' . $element;
+    }
+
+    return $class;
   }
 }
