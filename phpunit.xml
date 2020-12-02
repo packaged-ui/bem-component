@@ -10,8 +10,7 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
-         stopOnFailure="false"
->
+         stopOnFailure="false">
   <testsuites>
     <testsuite name="tests">
       <directory>tests</directory>
