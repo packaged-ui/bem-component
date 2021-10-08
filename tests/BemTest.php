@@ -40,5 +40,7 @@ class BemTest extends TestCase
     self::assertEquals('btn__icon', $ele->asString());
     $ele->modify('round');
     self::assertEquals('btn__icon btn__icon--round', $ele->asString());
+    $ele->modify('bgred', 'fgblue');
+    self::assertEquals('btn__icon btn__icon--round btn__icon--bgred btn__icon--fgblue', $ele->asString());
   }
 }

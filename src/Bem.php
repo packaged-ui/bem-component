@@ -40,15 +40,18 @@ class Bem
     return static::block($this->element($name));
   }
 
-  public function modify($modifier)
+  public function modify(string ...$modifiers)
   {
-    $this->_classes[] = $this->getModifier($modifier);
+    foreach(array_filter($modifiers) as $modifier)
+    {
+      $this->_classes[] = $this->getModifier($modifier);
+    }
     return $this;
   }
 
   public function asString(): string
   {
-    return $this->_block . (!empty($this->_classes) ? " " . implode(" ", $this->_classes) : '');
+    return $this->_block . (!empty($this->_classes) ? ' ' . implode(' ', $this->_classes) : '');
   }
 
   public function __toString()
